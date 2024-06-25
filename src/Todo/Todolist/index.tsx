@@ -25,7 +25,7 @@ const TodoList: React.FC = () => {
         id: Date.now(),
         text: newTodoText,
         done: false,
-        timestamp: Date.now(),
+        timestamp: Date.now(), // добавляем timestamp
       };
       setTodos((prevTodos) => [...prevTodos, newTodo]);
       setNewTodoText("");
@@ -53,7 +53,7 @@ const TodoList: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto w-[550px] mt-8 bg-base-100 p-4 rounded shadow-lg">
+    <div className="mx-auto w-[550px] mt-8 bg-white p-4 rounded shadow-lg">
       <h1 className="text-2xl font-bold mb-4 text-center">Todo List</h1>
       <form onSubmit={addTodo}>
         <div className="flex mb-4">

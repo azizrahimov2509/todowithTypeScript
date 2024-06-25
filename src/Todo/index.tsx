@@ -5,7 +5,7 @@ type TodoProps = {
     id: number;
     text: string;
     done: boolean;
-    timestamp: number;
+    timestamp: number; // добавляем timestamp в тип задачи
   };
   editTodo: (id: number, newText: string) => void;
   toggleTodo: (id: number) => void;
@@ -47,8 +47,13 @@ const Todo: React.FC<TodoProps> = ({
     setNewText(e.target.value);
   };
 
+  const formatTimestamp = (timestamp: number) => {
+    const date = new Date(timestamp);
+    return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+  };
+
   return (
-    <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-base-100">
+    <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white">
       {!isEditing ? (
         <div
           className={`flex items-center space-x-4 cursor-pointer ${
@@ -78,6 +83,7 @@ const Todo: React.FC<TodoProps> = ({
         </div>
       )}
       <div className="flex items-center justify-between gap-3">
+        <span>{formatTimestamp(todo.timestamp)}</span>
         <button
           className="btn btn-md btn-outline btn-secondary"
           onClick={handleEdit}
